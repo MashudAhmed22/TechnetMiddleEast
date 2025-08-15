@@ -2,9 +2,15 @@
 
 import { useState } from "react";
 import { Menu, X, Shield } from "lucide-react";
+import SearchBar from "../common/searchBar";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+   const handleSearch = (query: string) => {
+    console.log("Searching for:", query);
+    // Add your search logic here
+  };
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">
@@ -20,7 +26,13 @@ const Navigation = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex space-x-8 items-center">
+             <SearchBar
+              placeholder="Search..."
+              onSearch={handleSearch}
+              className="w-64"
+            />
+            
             <a
               href="#home"
               className="text-blue-600 font-semibold hover:text-blue-800 transition-colors"

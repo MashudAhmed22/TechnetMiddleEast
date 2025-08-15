@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { ShoppingCart, Plus, Maximize2 } from "lucide-react";
+import { ShoppingCart, Plus } from "lucide-react";
+import PrimaryButton from "../../../../Component/button/PrimaryButton";
+import OutlineButton from "../../../../Component/button/OutlineButton";
+import ProductCard from "../../../../Component/cards/ReusableCard";
+// Import the JSON data
+import gpsData from "../../../../../data/gpsdevices/GPSDevices.json";
 
 interface Product {
   id: string;
@@ -8,85 +13,23 @@ interface Product {
   image: string;
   fullDescription: string;
   features: string[];
+  price?: number;
+  category?: string;
 }
 
 interface Cart {
   [productId: string]: number;
 }
 
-const GPSProductsWithDetails: React.FC = () => {
+const GPSDevsServices: React.FC = () => {
   const [cart, setCart] = useState<Cart>({});
   const [currentView, setCurrentView] = useState<"products" | "details">(
     "products"
   );
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-  const gpsProducts: Product[] = [
-    {
-      id: "gps-1",
-      name: "Fleet Tracking System",
-      description: "Real-time vehicle tracking and management",
-      image:
-        "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop",
-      fullDescription:
-        "Advanced fleet tracking system with real-time GPS monitoring, route optimization, and comprehensive reporting dashboard. Perfect for businesses managing multiple vehicles.",
-      features: [
-        "Real-time GPS tracking",
-        "Route optimization",
-        "Driver behavior monitoring",
-        "Fuel consumption tracking",
-        "24/7 customer support",
-      ],
-    },
-    {
-      id: "gps-2",
-      name: "Navigation Pro",
-      description: "Professional navigation and mapping solutions",
-      image:
-        "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=300&h=200&fit=crop",
-      fullDescription:
-        "Professional-grade navigation system with offline maps, voice guidance, and advanced routing algorithms. Designed for commercial and personal use.",
-      features: [
-        "Offline maps",
-        "Voice navigation",
-        "Traffic updates",
-        "Points of interest",
-        "Custom route planning",
-      ],
-    },
-    {
-      id: "gps-3",
-      name: "Asset Tracker",
-      description: "Track valuable assets and equipment",
-      image:
-        "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=300&h=200&fit=crop",
-      fullDescription:
-        "Compact GPS tracker for valuable assets, equipment, and personal items. Long battery life and weatherproof design.",
-      features: [
-        "Compact design",
-        "Long battery life",
-        "Weatherproof",
-        "Geofence alerts",
-        "Mobile app",
-      ],
-    },
-    {
-      id: "gps-4",
-      name: "Marine GPS",
-      description: "Marine navigation and fish finder",
-      image:
-        "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=300&h=200&fit=crop",
-      fullDescription:
-        "Advanced marine GPS system with integrated fish finder, weather monitoring, and nautical charts. Built for maritime professionals.",
-      features: [
-        "Fish finder integration",
-        "Weather monitoring",
-        "Nautical charts",
-        "Waterproof design",
-        "AIS integration",
-      ],
-    },
-  ];
+  // Use the imported JSON data
+  const gpsProducts: Product[] = gpsData.gpsProducts;
 
   const addToCart = (productId: string): void => {
     setCart((prev) => ({ ...prev, [productId]: (prev[productId] || 0) + 1 }));
@@ -102,16 +45,19 @@ const GPSProductsWithDetails: React.FC = () => {
     setSelectedProduct(null);
   };
 
+  const formatPrice = (price?: number): string => {
+    return price ? `$${price.toFixed(2)}` : "Contact for pricing";
+  };
+
   if (currentView === "details" && selectedProduct) {
     return (
       <div className="min-h-screen bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 py-8">
-          <button
+          <OutlineButton
+            text="← Back to Products"
             onClick={goBack}
-            className="mb-6 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
-          >
-            ← Back to Products
-          </button>
+            className="mb-6"
+          />
 
           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
             <div className="md:flex">
@@ -123,9 +69,20 @@ const GPSProductsWithDetails: React.FC = () => {
                 />
               </div>
               <div className="md:w-1/2 p-8">
-                <h1 className="text-3xl font-bold text-gray-900 mb-4">
-                  {selectedProduct.name}
-                </h1>
+                <div className="flex items-center justify-between mb-4">
+                  <h1 className="text-3xl font-bold text-gray-900">
+                    {selectedProduct.name}
+                  </h1>
+                  {selectedProduct.category && (
+                    <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                      {selectedProduct.category}
+                    </span>
+                  )}
+                </div>
+
+                <div className="text-2xl font-bold text-green-600 mb-4">
+                  {formatPrice(selectedProduct.price)}
+                </div>
 
                 <p className="text-gray-600 mb-6">
                   {selectedProduct.fullDescription}
@@ -149,23 +106,22 @@ const GPSProductsWithDetails: React.FC = () => {
                 </div>
 
                 <div className="flex space-x-4">
-                  <button
+                  <PrimaryButton
+                    text="Add to Cart"
                     onClick={() => addToCart(selectedProduct.id)}
-                    className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 transition-colors font-medium"
-                  >
-                    Add to Cart
-                  </button>
-                  <button
+                    className="flex-1 bg-blue-600 text-white hover:bg-blue-700"
+                    icon={<Plus size={16} />}
+                  />
+                  <PrimaryButton
+                    text="Buy Now"
                     onClick={() => {
                       addToCart(selectedProduct.id);
                       alert(
                         "Product added to cart! Redirecting to checkout..."
                       );
                     }}
-                    className="flex-1 bg-green-600 text-white py-3 px-6 rounded-md hover:bg-green-700 transition-colors font-medium"
-                  >
-                    Buy Now
-                  </button>
+                    className="flex-1 bg-green-600 text-white hover:bg-green-700"
+                  />
                 </div>
               </div>
             </div>
@@ -176,58 +132,24 @@ const GPSProductsWithDetails: React.FC = () => {
   }
 
   return (
-    <section className="py-20 bg-gray-50 min-h-screen">
+    <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h3 className="text-3xl text-gray-900 mb-4 font-bold">
-            GPS Trading Solutions
+           GPS Devices & Services
           </h3>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Advanced GPS tracking and navigation systems for modern businesses
+           We offer a complete range of GPS hardware solutions from basic models to advanced.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {gpsProducts.map((product: Product) => (
-            <div
+            <ProductCard
               key={product.id}
-              className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden"
-            >
-              {/* Image Section */}
-              <div className="relative h-48 bg-gray-100">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover"
-                />
-                <button
-                  onClick={() => viewDetails(product)}
-                  className="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-50 transition-colors"
-                  title="View Details"
-                >
-                  <Maximize2 size={16} className="text-gray-600" />
-                </button>
-              </div>
-
-              {/* Product Info Section */}
-              <div className="p-4">
-                <div className="flex justify-between items-start mb-3">
-                  <h4 className="font-semibold text-gray-900 text-sm">
-                    {product.name}
-                  </h4>
-                  <button
-                    onClick={() => viewDetails(product)}
-                    className="text-blue-600 hover:text-blue-700 text-sm font-medium"
-                  >
-                    Details
-                  </button>
-                </div>
-
-                <p className="text-gray-600 text-xs mb-3 line-clamp-2">
-                  {product.description}
-                </p>
-              </div>
-            </div>
+              product={product}
+              onViewDetails={viewDetails}
+            />
           ))}
         </div>
 
@@ -252,4 +174,4 @@ const GPSProductsWithDetails: React.FC = () => {
   );
 };
 
-export default GPSProductsWithDetails;
+export default GPSDevsServices;

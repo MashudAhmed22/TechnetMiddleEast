@@ -1,0 +1,100 @@
+{
+  "gpsProducts": [
+    {
+      "id": "gps-1",
+      "name": "Fleet Tracking System",
+      "description": "Real-time vehicle tracking and management",
+      "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop",
+      "fullDescription": "Advanced fleet tracking system with real-time GPS monitoring, route optimization, and comprehensive reporting dashboard. Perfect for businesses managing multiple vehicles.",
+      "features": [
+        "Real-time GPS tracking",
+        "Route optimization",
+        "Driver behavior monitoring",
+        "Fuel consumption tracking",
+        "24/7 customer support"
+      ],
+      "price": 299.99,
+      "category": "Fleet Management"
+    },
+    {
+      "id": "gps-2",
+      "name": "Navigation Pro",
+      "description": "Professional navigation and mapping solutions",
+      "image": "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=300&h=200&fit=crop",
+      "fullDescription": "Professional-grade navigation system with offline maps, voice guidance, and advanced routing algorithms. Designed for commercial and personal use.",
+      "features": [
+        "Offline maps",
+        "Voice navigation",
+        "Traffic updates",
+        "Points of interest",
+        "Custom route planning"
+      ],
+      "price": 199.99,
+      "category": "Navigation"
+    },
+    {
+      "id": "gps-3",
+      "name": "Asset Tracker",
+      "description": "Track valuable assets and equipment",
+      "image": "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=300&h=200&fit=crop",
+      "fullDescription": "Compact GPS tracker for valuable assets, equipment, and personal items. Long battery life and weatherproof design.",
+      "features": [
+        "Compact design",
+        "Long battery life",
+        "Weatherproof",
+        "Geofence alerts",
+        "Mobile app"
+      ],
+      "price": 79.99,
+      "category": "Asset Tracking"
+    },
+    {
+      "id": "gps-4",
+      "name": "Marine GPS",
+      "description": "Marine navigation and fish finder",
+      "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=300&h=200&fit=crop",
+      "fullDescription": "Advanced marine GPS system with integrated fish finder, weather monitoring, and nautical charts. Built for maritime professionals.",
+      "features": [
+        "Fish finder integration",
+        "Weather monitoring",
+        "Nautical charts",
+        "Waterproof design",
+        "AIS integration"
+      ],
+      "price": 899.99,
+      "category": "Marine"
+    },
+    {
+      "id": "gps-5",
+      "name": "Personal GPS Watch",
+      "description": "Wearable GPS tracker with fitness features",
+      "image": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=300&h=200&fit=crop",
+      "fullDescription": "Advanced GPS watch with fitness tracking, heart rate monitoring, and emergency SOS features. Perfect for outdoor enthusiasts and athletes.",
+      "features": [
+        "GPS tracking",
+        "Heart rate monitor",
+        "Emergency SOS",
+        "Fitness tracking",
+        "Long battery life"
+      ],
+      "price": 249.99,
+      "category": "Wearable"
+    },
+    {
+      "id": "gps-6",
+      "name": "Construction Site Tracker",
+      "description": "Heavy-duty GPS tracker for construction equipment",
+      "image": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=300&h=200&fit=crop",
+      "fullDescription": "Industrial-grade GPS tracker designed for construction equipment and heavy machinery. Tamper-proof and built to withstand harsh conditions.",
+      "features": [
+        "Industrial grade",
+        "Tamper-proof",
+        "Equipment monitoring",
+        "Usage tracking",
+        "Theft alerts"
+      ],
+      "price": 399.99,
+      "category": "Industrial"
+    }
+  ]
+}

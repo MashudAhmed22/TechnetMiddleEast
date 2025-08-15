@@ -1,0 +1,100 @@
+{
+  "softwareProducts": [
+    {
+      "id": "sw-1",
+      "name": "Custom Development",
+      "description": "Tailored software solutions for your specific needs",
+      "image": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=300&h=200&fit=crop",
+      "fullDescription": "Custom software development services designed to meet your unique business requirements. From web applications to mobile apps, we create solutions that perfectly align with your workflow and objectives.",
+      "features": [
+        "Custom web applications",
+        "Mobile app development",
+        "API development",
+        "Database design",
+        "Full project lifecycle support"
+      ],
+      "price": 2999.99,
+      "category": "Development"
+    },
+    {
+      "id": "sw-2",
+      "name": "Enterprise Solutions",
+      "description": "Scalable enterprise-grade applications",
+      "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=300&h=200&fit=crop",
+      "fullDescription": "Enterprise-level software solutions built for scalability, security, and performance. Perfect for large organizations requiring robust, mission-critical applications.",
+      "features": [
+        "Scalable architecture",
+        "High-performance systems",
+        "Enterprise security",
+        "Cloud integration",
+        "24/7 monitoring"
+      ],
+      "price": 4999.99,
+      "category": "Enterprise"
+    },
+    {
+      "id": "sw-3",
+      "name": "System Integration",
+      "description": "Seamless integration with existing systems",
+      "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=300&h=200&fit=crop",
+      "fullDescription": "Professional system integration services to connect your existing software systems and streamline data flow across your organization.",
+      "features": [
+        "API integration",
+        "Data migration",
+        "Legacy system modernization",
+        "Third-party integrations",
+        "Workflow automation"
+      ],
+      "price": 1999.99,
+      "category": "Integration"
+    },
+    {
+      "id": "sw-4",
+      "name": "Technical Support",
+      "description": "24/7 technical support and maintenance",
+      "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=300&h=200&fit=crop",
+      "fullDescription": "Comprehensive technical support and maintenance services to ensure your software systems run smoothly and efficiently around the clock.",
+      "features": [
+        "24/7 support availability",
+        "Bug fixes and patches",
+        "Performance monitoring",
+        "Security updates",
+        "Remote assistance"
+      ],
+      "price": 599.99,
+      "category": "Support"
+    },
+    {
+      "id": "sw-5",
+      "name": "Cloud Solutions",
+      "description": "Modern cloud-based software architecture",
+      "image": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=300&h=200&fit=crop",
+      "fullDescription": "Cloud-native solutions designed for modern businesses. Leverage the power of cloud computing for scalability, reliability, and cost-effectiveness.",
+      "features": [
+        "Cloud architecture design",
+        "Serverless solutions",
+        "Auto-scaling capabilities",
+        "Cost optimization",
+        "Multi-cloud support"
+      ],
+      "price": 3499.99,
+      "category": "Cloud"
+    },
+    {
+      "id": "sw-6",
+      "name": "Data Analytics Platform",
+      "description": "Advanced data analytics and business intelligence",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300&h=200&fit=crop",
+      "fullDescription": "Powerful data analytics platform that transforms raw data into actionable business insights through advanced analytics and visualization tools.",
+      "features": [
+        "Real-time analytics",
+        "Data visualization",
+        "Machine learning integration",
+        "Custom dashboards",
+        "Predictive analytics"
+      ],
+      "price": 3999.99,
+      "category": "Analytics"
+    }
+  ]
+}

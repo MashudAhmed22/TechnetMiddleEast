@@ -1,6 +1,6 @@
 
 'use client';
-import About from "./Pages/about/About";
+import Carousel from "./Pages/carousel/Carousel";
 import ContactUs from "./Pages/contactus/ContactUs";
 import Footer from "./Pages/footer/Footer";
 import Home from "./Pages/home/Home";
@@ -11,7 +11,7 @@ export default function Page() {
   return (
     <div>
       <Home />
-      <About />
+      <Carousel />
       <OurServices />
       <ContactUs />
       <Footer />

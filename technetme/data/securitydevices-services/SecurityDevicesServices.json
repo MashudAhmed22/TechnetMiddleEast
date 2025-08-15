@@ -1,0 +1,100 @@
+{
+  "securityProducts": [
+    {
+      "id": "sec-1",
+      "name": "CCTV Systems",
+      "description": "High-definition surveillance camera systems",
+      "image": "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=300&h=200&fit=crop",
+      "fullDescription": "State-of-the-art CCTV surveillance systems with high-definition cameras, night vision capabilities, and remote monitoring. Perfect for businesses and residential properties requiring comprehensive security coverage.",
+      "features": [
+        "4K Ultra HD recording",
+        "Night vision technology",
+        "Motion detection alerts",
+        "Remote viewing via mobile app",
+        "Weather-resistant design"
+      ],
+      "price": 899.99,
+      "category": "Surveillance"
+    },
+    {
+      "id": "sec-2",
+      "name": "Access Control",
+      "description": "Advanced access control and management",
+      "image": "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=300&h=200&fit=crop",
+      "fullDescription": "Comprehensive access control systems featuring biometric scanners, key card readers, and smart lock integration. Manage and monitor access to your premises with advanced security protocols.",
+      "features": [
+        "Biometric fingerprint scanning",
+        "RFID card access",
+        "Smart lock integration",
+        "Real-time access logs",
+        "Multi-level security clearance"
+      ],
+      "price": 699.99,
+      "category": "Access Control"
+    },
+    {
+      "id": "sec-3",
+      "name": "Alarm Systems",
+      "description": "Intelligent alarm and notification systems",
+      "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop",
+      "fullDescription": "Advanced alarm systems with intelligent sensors, instant notifications, and integration with emergency services. Provides comprehensive protection against intrusion and security threats.",
+      "features": [
+        "Motion and door sensors",
+        "Glass break detection",
+        "Instant mobile alerts",
+        "Emergency service integration",
+        "Battery backup system"
+      ],
+      "price": 499.99,
+      "category": "Alarm Systems"
+    },
+    {
+      "id": "sec-4",
+      "name": "24/7 Monitoring",
+      "description": "Round-the-clock security monitoring",
+      "image": "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=300&h=200&fit=crop",
+      "fullDescription": "Professional 24/7 monitoring services with trained security personnel, immediate response protocols, and comprehensive incident reporting. Your security is our priority around the clock.",
+      "features": [
+        "24/7 professional monitoring",
+        "Immediate emergency response",
+        "Incident reporting",
+        "Multi-channel communication",
+        "Backup monitoring centers"
+      ],
+      "price": 299.99,
+      "category": "Monitoring"
+    },
+    {
+      "id": "sec-5",
+      "name": "Fire Safety Systems",
+      "description": "Advanced fire detection and suppression",
+      "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=300&h=200&fit=crop",
+      "fullDescription": "Comprehensive fire safety systems including smoke detectors, heat sensors, and automated suppression systems. Protect your property and personnel with state-of-the-art fire safety technology.",
+      "features": [
+        "Smoke and heat detection",
+        "Automated sprinkler systems",
+        "Emergency evacuation alerts",
+        "Fire department notification",
+        "System self-diagnostics"
+      ],
+      "price": 1299.99,
+      "category": "Fire Safety"
+    },
+    {
+      "id": "sec-6",
+      "name": "Perimeter Security",
+      "description": "Comprehensive perimeter protection systems",
+      "image": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=300&h=200&fit=crop",
+      "fullDescription": "Advanced perimeter security solutions including motion sensors, infrared barriers, and automated lighting systems. Secure your property boundaries with cutting-edge technology.",
+      "features": [
+        "Infrared barrier systems",
+        "Motion-activated lighting",
+        "Perimeter breach alerts",
+        "Weather-resistant sensors",
+        "Integration with main security system"
+      ],
+      "price": 799.99,
+      "category": "Perimeter"
+    }
+  ]
+}

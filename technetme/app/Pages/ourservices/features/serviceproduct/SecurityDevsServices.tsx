@@ -1,16 +1,20 @@
-
-
-
-
-
-import React, { useState } from 'react';
-import { ShoppingCart, Plus, Minus } from 'lucide-react';
+import React, { useState } from "react";
+import { ShoppingCart, Plus } from "lucide-react";
+import PrimaryButton from "../../../../Component/button/PrimaryButton";
+import OutlineButton from "../../../../Component/button/OutlineButton";
+import ProductCard from "../../../../Component/cards/ReusableCard";
+// Import the JSON data
+import securityData from "./../../../../../data/securitydevices-services/SecurityDevicesServices.json";
 
 interface Product {
   id: string;
   name: string;
-  price: number;
   description: string;
+  image: string;
+  fullDescription: string;
+  features: string[];
+  price?: number;
+  category?: string;
 }
 
 interface Cart {
@@ -19,107 +23,148 @@ interface Cart {
 
 const SecurityDevsServices: React.FC = () => {
   const [cart, setCart] = useState<Cart>({});
+  const [currentView, setCurrentView] = useState<"products" | "details">(
+    "products"
+  );
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-  const securityProducts: Product[] = [
-    { id: 'sec-1', name: 'CCTV Systems', price: 899, description: 'High-definition surveillance camera systems' },
-    { id: 'sec-2', name: 'Access Control', price: 699, description: 'Advanced access control and management' },
-    { id: 'sec-3', name: 'Alarm Systems', price: 499, description: 'Intelligent alarm and notification systems' },
-    { id: 'sec-4', name: '24/7 Monitoring', price: 299, description: 'Round-the-clock security monitoring' },
-    { id: 'sec-5', name: '24/7 Monitoring', price: 299, description: 'Round-the-clock security monitoring' },
-    { id: 'sec-6', name: '24/7 Monitoring', price: 299, description: 'Round-the-clock security monitoring' },
-    { id: 'sec-7', name: '24/7 Monitoring', price: 299, description: 'Round-the-clock security monitoring' },
-    { id: 'sec-8', name: '24/7 Monitoring', price: 299, description: 'Round-the-clock security monitoring' },
-    { id: 'sec-9', name: '24/7 Monitoring', price: 299, description: 'Round-the-clock security monitoring' },
-    { id: 'sec-10', name: '24/7 Monitoring', price: 299, description: 'Round-the-clock security monitoring' },
-    { id: 'sec-11', name: '24/7 Monitoring', price: 299, description: 'Round-the-clock security monitoring' },
-    { id: 'sec-12', name: '24/7 Monitoring', price: 299, description: 'Round-the-clock security monitoring' },
-  ];
-
-  const updateQuantity = (productId: string, change: number): void => {
-    setCart(prev => {
-      const currentQty = prev[productId] || 0;
-      const newQty = Math.max(0, currentQty + change);
-      if (newQty === 0) {
-        const { [productId]: removed, ...rest } = prev;
-        return rest;
-      }
-      return { ...prev, [productId]: newQty };
-    });
-  };
+  // Use the imported JSON data
+  const securityProducts: Product[] = securityData.securityProducts;
 
   const addToCart = (productId: string): void => {
-    setCart(prev => ({ ...prev, [productId]: (prev[productId] || 0) + 1 }));
+    setCart((prev) => ({ ...prev, [productId]: (prev[productId] || 0) + 1 }));
   };
 
-  const buyNow = (productId: string): void => {
-    addToCart(productId);
-    alert('Product added to cart! Redirecting to checkout...');
+  const viewDetails = (product: Product): void => {
+    setSelectedProduct(product);
+    setCurrentView("details");
   };
+
+  const goBack = (): void => {
+    setCurrentView("products");
+    setSelectedProduct(null);
+  };
+
+  const formatPrice = (price?: number): string => {
+    return price ? `$${price.toFixed(2)}` : "Contact for pricing";
+  };
+
+  if (currentView === "details" && selectedProduct) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 py-8">
+          <OutlineButton
+            text="← Back to Products"
+            onClick={goBack}
+            className="mb-6"
+          />
+
+          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div className="md:flex">
+              <div className="md:w-1/2">
+                <img
+                  src={selectedProduct.image}
+                  alt={selectedProduct.name}
+                  className="w-full h-64 md:h-full object-cover"
+                />
+              </div>
+              <div className="md:w-1/2 p-8">
+                <div className="flex items-center justify-between mb-4">
+                  <h1 className="text-3xl font-bold text-gray-900">
+                    {selectedProduct.name}
+                  </h1>
+                  {selectedProduct.category && (
+                    <span className="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium">
+                      {selectedProduct.category}
+                    </span>
+                  )}
+                </div>
+
+                <div className="text-2xl font-bold text-green-600 mb-4">
+                  {formatPrice(selectedProduct.price)}
+                </div>
+
+                <p className="text-gray-600 mb-6">
+                  {selectedProduct.fullDescription}
+                </p>
+
+                <div className="mb-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    Features:
+                  </h3>
+                  <ul className="space-y-2">
+                    {selectedProduct.features.map((feature, index) => (
+                      <li
+                        key={index}
+                        className="flex items-center text-gray-600"
+                      >
+                        <div className="w-2 h-2 bg-red-600 rounded-full mr-3"></div>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="flex space-x-4">
+                  <PrimaryButton
+                    text="Add to Cart"
+                    onClick={() => addToCart(selectedProduct.id)}
+                    className="flex-1 bg-red-600 text-white hover:bg-red-700"
+                    icon={<Plus size={16} />}
+                  />
+                  <PrimaryButton
+                    text="Buy Now"
+                    onClick={() => {
+                      addToCart(selectedProduct.id);
+                      alert(
+                        "Product added to cart! Redirecting to checkout..."
+                      );
+                    }}
+                    className="flex-1 bg-green-600 text-white hover:bg-green-700"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h3 className="text-3xl font-bold text-gray-900 mb-4">
+          <h3 className="text-3xl text-gray-900 mb-4 font-bold">
             Security Devices & Services
           </h3>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Comprehensive security solutions to protect your assets and premises
           </p>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {securityProducts.map((product: Product) => (
-            <div key={product.id} className="bg-white border border-gray-200 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <div className="mb-4">
-                <h4 className="font-semibold text-gray-900 mb-2">{product.name}</h4>
-                <p className="text-gray-600 text-sm mb-3">{product.description}</p>
-                <div className="text-2xl font-bold text-red-600 mb-4">${product.price}</div>
-              </div>
-              
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center space-x-2">
-                  <button
-                    onClick={() => updateQuantity(product.id, -1)}
-                    className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 disabled:opacity-50"
-                    disabled={!cart[product.id]}
-                  >
-                    <Minus size={16} />
-                  </button>
-                  <span className="w-8 text-center font-medium">{cart[product.id] || 0}</span>
-                  <button
-                    onClick={() => updateQuantity(product.id, 1)}
-                    className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200"
-                  >
-                    <Plus size={16} />
-                  </button>
-                </div>
-              </div>
 
-              <div className="flex space-x-2">
-                <button
-                  onClick={() => addToCart(product.id)}
-                  className="flex-1 bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 transition-colors text-sm font-medium"
-                >
-                  Add to Cart
-                </button>
-                <button
-                  onClick={() => buyNow(product.id)}
-                  className="flex-1 bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition-colors text-sm font-medium"
-                >
-                  Buy Now
-                </button>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {securityProducts.map((product: Product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              onViewDetails={viewDetails}
+            />
           ))}
         </div>
 
+        {/* Cart Summary */}
         {Object.keys(cart).length > 0 && (
           <div className="mt-8 text-center">
             <div className="inline-flex items-center bg-red-50 px-4 py-2 rounded-lg">
               <ShoppingCart size={20} className="mr-2 text-red-600" />
               <span className="text-red-800 font-medium">
-                Cart: {Object.values(cart).reduce((sum: number, qty: number) => sum + qty, 0)} items
+                Cart:{" "}
+                {Object.values(cart).reduce(
+                  (sum: number, qty: number) => sum + qty,
+                  0
+                )}{" "}
+                items
               </span>
             </div>
           </div>
